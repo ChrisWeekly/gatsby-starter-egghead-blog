@@ -1,4 +1,6 @@
-# egghead.io creator MDX Blog Starter Project
+# Gatsby MDX Blog Starter Project
+
+This is based on the ["egghead.io creator MDX Blog Starter Project" ](https://github.com/eggheadio/gatsby-starter-egghead-blog)
 
 This is based on Robin Wieruch's https://github.com/rwieruch/gatsby-mdx-blog-starter-project
 
@@ -28,9 +30,10 @@ A starter project in [Gatsby.js](https://www.gatsbyjs.org/) with [MDX](https://g
 - `git clone git@github.com:eggheadio/gatsby-starter-egghead-blog.git`
 - `cd gatsby-starter-egghead-blog`
 - `yarn`
-- `gatsby develop`
+- `npx gatsby develop`
 - visit http://localhost:8000
 
+<!--
 ## Setup via Gatsby CLI
 
 - `gatsby new gatsby-starter-egghead-blog git@github.com:eggheadio/gatsby-starter-egghead-blog.git`
@@ -38,3 +41,4 @@ A starter project in [Gatsby.js](https://www.gatsbyjs.org/) with [MDX](https://g
 - `yarn`
 - `gatsby develop`
 - visit http://localhost:8000
+-->
