@@ -1,3 +1,4 @@
+# DEVNOTES 
 ## ChrisWeekly.com `blog` repo
 
 Repo for TBD CWX blog, under 'ChrisWeekly.com' GH org
@@ -26,6 +27,7 @@ npmlsg
   npm@6.14.4
 ```
 
+## FIRST-TIME GATSBY UX TRAINWRECK - OVERVIEW
 tried gatsby --version, and it complained (hard stop, errors) bc not latest version.
 ok, so try updating gatsby per instructions, npm i -g gatsby-cli, blows up on missing peerdeps? >/
 wtf, errors and missing peer deps... npm still sucks. 
@@ -33,18 +35,46 @@ Trust yourself, Chris! you like and know yarn. and global installs are almost al
 Sure enough, the egghead starter uses yarn:
   https://github.com/eggheadio/gatsby-starter-egghead-blog
   ... tho they invoke npm 1x here https://github.com/eggheadio/gatsby-starter-egghead-blog/blob/master/package.json#L72 
-The Gatsby docs are a hot mess. ppl opening issues to complain (rightly) abt broken step-by-step instructions...
-TLDR:
-Gatsby tutorial recs `brew install node`, then install and use nvm....
-I strongly prefer alt:  `brew install n`, then use n for ALL node version mgmt
-and use yarn (not npm) for pkg mgmt. full stop. ok.
-instead of `gatsby new` (deps on global install, or maybe npx gatsby new?) I think this implies cloning the starter I like?
-note once I've installed the starter, it makes no assumptions about global installation of gatsby, rather (properly) including a local dep on gatsby, w version specified. global installations suck. ok.
-cloning only as a temp bootstrap mech; not planning to keep connection to the upstream.
-(A) clone to another dir, rm the .git dir, mv the contents to new dotcom/blog dir
-(B) fork somewhere else on local fs... no, stop. don't need to worry abt pulling in upstream changes from the starter. right? RIGHT.
-(C) fork it (no harm, and keeps a possible conn to upstream in case I ever care), then simply pull it down from my repo <- THIS. NOW.
+The Gatsby docs are a hot mess. ppl opening issues to complain (rightly) abt broken step-by-step instructions for the simplest 1st experience getting started.
+And the response is "yes, you're expected to dive headlong into dependency hell".
+No. We can do much better.
+Gatsby has a fair amount of complexity, and it's at least arguably justified.
+But this onboarding UX is just abysmal, and it doesn't need to be.
 
+
+## NODE VERSIONS: `n` not `nvm`
+
+Gatsby TUT RECS: `brew install node`, then install and use `nvm`.
+
+CW PREFERENCE / ALT:  `brew install n`, then use `n` for ALL node version mgmt.
+// I used nvm for a couple years and was glad to have a way to manage node versions, though annoyed by its shell invasiveness.
+// Then I learned about n, started using it, and never looked back. Simpler, cleaner, better.
+
+## PACKAGE MGR: `yarn`, not `npm`
+// TODO write abt why this pref. Note pnpm alt too.
+
+## GLOBAL INSTALLS: `npx gatsby foo`, not `npm i -g gatsby-cli` && `gatsby foo`
+Gatsby docs suggest a global install of gatsby-cli. 
+But global installations are a bad idea on general principle.
+Especially when invoking `gatsby` triggers errors and exits if you don't have the latest version!
+^ ?? Doesn't this script behavior imply that npx almost has to be used? Every time it's invoked, it's required to update to the latest version.
+And given an `npm global` context, this means any peer deps must also be globally installed? wat.
+That is just a trainwreck.
+
+If you follow the instructions to update it -- `npm i -g gatsby-cli` -- that in turn will blow up on missing peer deps.
+This is arguably npm's fault, not gatsby's, but a user following Gatsby's official instructions will absolutely get derailed here.
+
+## GATSBY NEW vs CLONE STARTER, W GIT UPSTREAM CONN MAINTAINED
+... then using `gatsby new` to scaffold using arbitrary starters.
+
+Alt: to start working with the gatsby-starter-egghead-blog starter -- which thankfully uses yarn, not npm, need 
+instead of `gatsby new` (via global install of gatsby-cli) I think this implies simply cloning the repo of the starter I chose.
+Note once I've installed the starter, will still need to invoke gatsby (ie, the gatsby-cli binary). can use npx.
+Options for cloning as a temp bootstrap mech vs keeping a connection to the upstream:
+(A) clone to another dir, rm the .git subdir, mv the contents to new dotcom/blog dir
+(B) fork it (no harm; maintain conn to upstream in case I ever care), then pull it down from my own repo, and 1-time `git upstream` config step.
+
+## tangent - test n -> node -> npm binaries' versions and fs loc
 ```
 dotcom
 n -> 13.14.0 (with npm 6.14.4)
@@ -60,7 +90,7 @@ the /usr/local/lib/ (ie, `npmlsg`) is this same good version, nothing more to do
 -----------------------------------------------------------------------
 
 
-# pivot #
+## pivot ---------------------------------------------------------------
 ## from dotcom repo to forked blog repo ##
 
 ```
@@ -84,15 +114,15 @@ npx gatsby develop
   17 pages
 ```
 
-# IDEA #
+## IDEA - BLOG POST
 this process was a PITA and relied on plenty of prior knowledge. Ppl are suffering bc of this.
 I could **write up even just the steps I've done here so far**, and it'd provide value. always be writing!
 
-# FTW: local dev env is running, and I can start writing in the blog anytime. 11:21a #
+## FTW: local dev env is running, and I can start writing in the blog anytime. 11:21a
 √ rename gs-egghead-blog -> blog
 √ mv dotcom README to blog/DEVNOTES.md (peer of upstream's README, diff purposes)
 
-#  tangent: git upstream vs origin #
+## tangent: fix my mistake wrt git upstream vs origin 
 whoops! mis-handled origin vs upstream w my fork.
 intent: having forked from upstream (egghead), preserve the upstream relationship.
 but work w my fork as origin.
@@ -120,8 +150,7 @@ but that failed bc local dev br had no upstream set. so, did:
 ```
 ... which seems 100% correct.
 
-but on github, in trying to create the PR via GUI, the target br was the egghead repo not my fork. Unsure if I was careless, or if PRs are bound to upstream in latest gui? 
-Upd: I was careless. next time just watch the GUI dropdown more carefully, be sure the PR diff is against my fork not the upstream.
+but on github, in trying to create the PR via GUI, the target br was the egghead repo not my fork. Unsure if I was careless, or if PRs are bound to upstream in latest gui? Upd: Yep, I was just careless. next time just watch the GUI dropdown more carefully, be sure the PR diff is against my fork not the upstream.
 
 √ close the PR and delete the egghead repo's "ChrisWeekly/dev" br. (can't delete the PR, oh well.)
 
@@ -131,5 +160,43 @@ Anyway, I had neglected to be explicit in setting the upstream; doing that now:
 ... and it's all 100% sorted.
 at some point I may want to pull in updates from upstream, but for now it's good to know I can... and have my own familiar PR-based workflow against my own org's repo.
 
-time to strart WRITING IN THE BLOG! :)
+# time to start WRITING IN THE BLOG! :)
+
+# 20200508
+
+## devnotes -> blog post(s) thoughts
+  √ start to org the notes above into an outline for post about the issues w setup here.
+  maybe somewhat evergreen (not just "this version of this lib, howto") bc touches on core toolset
+  be sure to maintain polite, humble "this worked for me" and avoid being strident or accusatory
+  not looking to debate merits of npm vs yarn, nor the rest, just aiming to help, and be a voice of reason.
+  moving fwd, want to learn to capture such notes as blog fodder efficiently.
+  devnotes while doing stuff, mos def.
+  zsh history has all the cmds, and git commits are useful places to add context and batch stuff
+  right now it's 756a -- way over the allotted time, and this wasn't ideal -- but the win is that I wanted to work on blog-related stuff, and I did.
+  now to catch up w my day!
+
+  speaking of capturing knowledge as I go -- Jan ski trip eslint+prettier stuff and "nextapp" for TL, took long time to dig it up.
+  ~/work/torchlight/ui-arch/devnotes.md
+  ~/work/torchlight/ui-arch/nextapp
+  phew!
+  TODO - revisit that stuff and incorp properly into memex etc.
+  and turn the "eslint+prettier" stuff into blog post too.
+  /829a
+
+  ... and beyond the eslint+prettier howto, those devnotes have a solution for the peerdeps issue too, ie the curr WIP blog post abt npm globals etc! :)
+
+  833 really time to pause now. but wow will it feel good to pull together my notes and kb etc, empowered and expert, I've got this.
+  and it will be FUN to build stuff w great tools I grok and config for FLOWSTATE.
+  and to help other ppl suffer less bc I went thru it and saw it and can express it! :)
+  835
+
+  lots of helpful kb stuff in my ChrisWeekly.com private trello from the TL project, eg
+  https://trello.com/c/N7rmjNYS/29-ssr-css-classnames-labels
+  etc
+  /846a
+
+## WIP - DEV AND DEPLOY
+
+
+
 
