@@ -25,9 +25,10 @@ npmlsg
   gatsby-cli@2.12.8
   npm@6.14.4
 ```
-// tried gatsby --version, and it complained (hard stop, errors) bc not latest version.
-// ok, so try updating gatsby per instructions, npm i -g gatsby-cli, blows up on missing peerdeps? >/
-// wtf, errors and missing peer deps... npm still sucks. 
+
+tried gatsby --version, and it complained (hard stop, errors) bc not latest version.
+ok, so try updating gatsby per instructions, npm i -g gatsby-cli, blows up on missing peerdeps? >/
+wtf, errors and missing peer deps... npm still sucks. 
 Trust yourself, Chris! you like and know yarn. and global installs are almost always a mistake.
 Sure enough, the egghead starter uses yarn:
   https://github.com/eggheadio/gatsby-starter-egghead-blog
@@ -56,7 +57,11 @@ npm --version 6.13.4 === yep, good, the npm is coming strictly from what's node-
 the /usr/local/lib/ (ie, `npmlsg`) is this same good version, nothing more to do here wrt cleanup. yarn ho!
 ```
 
-pivot from dotcom repo to forked blog repo
+-----------------------------------------------------------------------
+
+
+# pivot #
+## from dotcom repo to forked blog repo ##
 
 ```
 n 13
@@ -69,27 +74,25 @@ gatsby develop
 // zsh cmd not found -- oh, right, even tho this repo spec's a dep on gatsby-cli^2.8.5, it doesn't provide it. ok, npx it is.
 npx gatsby develop
 ...
-You can now view gatsby-starter-egghead-blog in the browser.
-⠀
-  http://localhost:8000/
-⠀
-View GraphiQL, an in-browser IDE, to explore your site's data and schema
-⠀
-  http://localhost:8000/___graphql
-⠀
-Note that the development build is not optimized.
-To create a production build, use gatsby build
-⠀
-success Building development bundle - 17.589s
-17 pages
+  You can now view gatsby-starter-egghead-blog in the browser.
+    http://localhost:8000/  ⠀
+  View GraphiQL, an in-browser IDE, to explore your site's data and schema
+    http://localhost:8000/___graphql  ⠀
+  Note that the development build is not optimized.
+  To create a production build, use gatsby build⠀
+  success Building development bundle - 17.589s
+  17 pages
+```
 
-// IDEA: this process was a PITA and relied on plenty of prior knowledge. Ppl are suffering bc of this.
-I could write up even just the steps I've done here so far, and it'd provide value. always be writing!
+# IDEA #
+this process was a PITA and relied on plenty of prior knowledge. Ppl are suffering bc of this.
+I could **write up even just the steps I've done here so far**, and it'd provide value. always be writing!
 
-// FTW: local dev env is running, and I can start writing in the blog anytime. 11:21a
+# FTW: local dev env is running, and I can start writing in the blog anytime. 11:21a #
 √ rename gs-egghead-blog -> blog
 √ mv dotcom README to blog/DEVNOTES.md (peer of upstream's README, diff purposes)
 
+#  tangent: git upstream vs origin #
 whoops! mis-handled origin vs upstream w my fork.
 intent: having forked from upstream (egghead), preserve the upstream relationship.
 but work w my fork as origin.
@@ -98,7 +101,6 @@ I like PR workflow; did the 1st commit in a `dev` br, then did
 `git push -u origin dev`...
 
 but that failed bc local dev br had no upstream set. so, did:
-
 ```
   $ git push --set-upstream origin dev
   Enumerating objects: 6, done.
@@ -118,17 +120,16 @@ but that failed bc local dev br had no upstream set. so, did:
 ```
 ... which seems 100% correct.
 
-but on github, in trying to create the PR via GUI, the target br was the egghead repo not my fork.
-Unsure if I was careless, or if PRs are bound to upstream in latest gui? 
+but on github, in trying to create the PR via GUI, the target br was the egghead repo not my fork. Unsure if I was careless, or if PRs are bound to upstream in latest gui? 
+Upd: I was careless. next time just watch the GUI dropdown more carefully, be sure the PR diff is against my fork not the upstream.
 
 √ close the PR and delete the egghead repo's "ChrisWeekly/dev" br. (can't delete the PR, oh well.)
 
 Anyway, I had neglected to be explicit in setting the upstream; doing that now:
-
 `git remote add upstream git://github.com/eggheadio/gatsby-starter-egghead-blog.git`
 
+... and it's all 100% sorted.
+at some point I may want to pull in updates from upstream, but for now it's good to know I can... and have my own familiar PR-based workflow against my own org's repo.
 
-
-
-
+time to strart WRITING IN THE BLOG! :)
 
