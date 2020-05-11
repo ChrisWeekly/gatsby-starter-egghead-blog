@@ -30,7 +30,7 @@ A starter project in [Gatsby.js](https://www.gatsbyjs.org/) with [MDX](https://g
 - `git clone git@github.com:eggheadio/gatsby-starter-egghead-blog.git`
 - `cd gatsby-starter-egghead-blog`
 - `yarn`
-- `npx gatsby develop`
+- `yarn dev`
 - visit http://localhost:8000
 
 <!--

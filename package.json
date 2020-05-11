@@ -66,8 +66,8 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "build": "npx gatsby build",
+    "dev": "npx gatsby develop",
     "start": "serve public/",
     "now-build": "npm run build"
   }

@@ -34,9 +34,8 @@ const Hero = () => {
             line-height: 1.5;
             margin: 0;
             max-width: ${rhythm(15)};
-          `}
-        >
-          Your blog says the things you want to say.
+          `}>
+        Welcome to Chris Weekly's new blog!
         </h1>
       </Container>
       <div
