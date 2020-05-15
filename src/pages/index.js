@@ -35,7 +35,7 @@ const Hero = () => {
             margin: 0;
             max-width: ${rhythm(15)};
           `}>
-        Welcome to Chris Weekly's new blog!
+        Devnotes 
         </h1>
       </Container>
       <div
@@ -115,13 +115,13 @@ export const pageQuery = graphql`
       }
     }
     allMdx(
-      limit: 9
+      limit: 3
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { published: { ne: false } } }
     ) {
       edges {
         node {
-          excerpt(pruneLength: 190)
+          excerpt(pruneLength: 140)
           id
           fields {
             title

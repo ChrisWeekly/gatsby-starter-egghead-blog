@@ -197,6 +197,8 @@ at some point I may want to pull in updates from upstream, but for now it's good
 
 ## WIP - DEV AND DEPLOY
 
-
+√ tweak scripts - eg `yarn dev`
+√ tweak /etc/hosts - 127.0.0.1 dev.local -> http://dev.local:8000
+. 
 
 
